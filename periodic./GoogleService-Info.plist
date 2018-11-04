@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>429302635529-vh71ta3cmh3498gjfl1mu72e1q9d4vud.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.429302635529-vh71ta3cmh3498gjfl1mu72e1q9d4vud</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDc4w_ixts6cTqOyNdpi2CYwD9y9nVPawE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>429302635529</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Anika.periodic-</string>
+	<key>PROJECT_ID</key>
+	<string>periodic-8d9dd</string>
+	<key>STORAGE_BUCKET</key>
+	<string>periodic-8d9dd.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:429302635529:ios:f2e31812bed2c424</string>
+	<key>DATABASE_URL</key>
+	<string>https://periodic-8d9dd.firebaseio.com</string>
+</dict>
+</plist>
