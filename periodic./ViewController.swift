@@ -8,37 +8,52 @@
 
 import UIKit
 import SkyFloatingLabelTextField
-import Firebase
+import FirebaseStorage
+import FirebaseAuth
+import FirebaseStorage
 
 
 class ViewController: UIViewController {
     
-    var email: SkyFloatingLabelTextFieldWithIcon!
-    var password: SkyFloatingLabelTextFieldWithIcon!
+    var email: SkyFloatingLabelTextField!
+    var password: SkyFloatingLabelTextField!
     var login: UIButton!
     var signup: UIButton!
+    
+    var periodic: UILabel!
     
     var logoImg: UIImage!
     var periodicLabel: UILabel!
     var wave: UIImage!
+    let dbHelper = FirebaseDatabaseHelper()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let imageName = "LogoImage"
-        let image = UIImage(named: imageName)
-        let imageView = UIImageView(image: image!)
-        imageView.frame = CGRect(x: 0, y: 0, width: view.frame.width - 50, height: 170)
-        imageView.center = CGPoint(x: view.frame.width / 2 , y:  view.frame.height/2 - 100)
-        view.addSubview(imageView)
+        self.navigationController?.isNavigationBarHidden = true
+        
+        periodic = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 200))
+        periodic.center = CGPoint(x: view.frame.width/2, y: view.frame.height/2 - 250)
+        periodic.textAlignment = .center
+        periodic.textColor = .white
+        periodic.adjustsFontSizeToFitWidth = true
+        periodic.font = UIFont(name:"Arial", size: 70.0)
+        periodic.text = "periodic"
+        self.view.addSubview(periodic)
+        
+//        let imageName = "LogoImage"
+//        let image = UIImage(named: imageName)
+//        let imageView = UIImageView(image: image!)
+//        imageView.frame = CGRect(x: 0, y: 0, width: view.frame.width - 50, height: 170)
+//        imageView.center = CGPoint(x: view.frame.width / 2 , y:  view.frame.height/2 - 100)
+//        view.addSubview(imageView)
         
         let imageN = "WaveImage"
         let imageWave = UIImage(named: imageN)
         let imageWaveView = UIImageView(image: imageWave!)
-        imageWaveView.frame = CGRect(x: 10, y: 10, width: view.frame.width, height: 600)
-        imageWaveView.center = CGPoint(x: view.frame.width/2, y:  view.frame.height/2 + 300)
+        imageWaveView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 600)
+        imageWaveView.center = CGPoint(x: view.frame.width/2, y:  view.frame.height/2 + 250)
         imageWaveView.contentMode = .scaleAspectFit
-
         view.addSubview(imageWaveView)
     
         labelSetUp()
@@ -58,8 +73,8 @@ class ViewController: UIViewController {
         view.backgroundColor = airPinkColor
         
         //USERNAME UI TEXTFIELD
-        email = SkyFloatingLabelTextFieldWithIcon(frame: CGRect(x: 0, y: 0, width: view.frame.width * 0.8, height: 40.00));
-        email.center = CGPoint(x: view.frame.width / 2, y:  view.frame.height/2 + 30)
+        email = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: view.frame.width * 0.8, height: 40.00));
+        email.center = CGPoint(x: view.frame.width / 2, y:  view.frame.height/2 )
         email.placeholder = "Email"
         
         email.keyboardType = UIKeyboardType.default
@@ -74,8 +89,8 @@ class ViewController: UIViewController {
         self.view.addSubview(email)
     
         //PASSWORD UITEXTFIELD
-        password = SkyFloatingLabelTextFieldWithIcon(frame: CGRect(x: 0, y: 0, width: view.frame.width * 0.8, height: 40.00));
-        password.center = CGPoint(x: view.frame.width / 2, y:  view.frame.height/2 + 90)
+        password = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: view.frame.width * 0.8, height: 40.00));
+        password.center = CGPoint(x: view.frame.width / 2, y:  view.frame.height/2 + 70)
         password.placeholder = "Password"
         password.keyboardType = UIKeyboardType.default
         password.isSecureTextEntry = true
@@ -91,36 +106,54 @@ class ViewController: UIViewController {
         self.view.addSubview(password)
         
         //SINGUP UIBUTTON
-        signup = UIButton(frame: CGRect(x: 100, y: 100, width: view.frame.width - 100, height: 45))
-        signup.center = CGPoint(x: view.frame.width/4 * 3, y:  view.frame.height/2 + 150)
+        signup = UIButton(frame: CGRect(x: 100, y: 100, width: view.frame.width/4 - 10 , height: 45))
+        signup.center = CGPoint(x: view.frame.width/4 * 3 - 35, y:  view.frame.height/2 + 250)
         signup.setTitle("sign up", for: UIControlState())
         signup.titleLabel?.font = UIFont(name:"Arial", size: 100.0)
         signup.titleLabel?.font =  .systemFont(ofSize: 30)
-
         signup.backgroundColor = airPinkColor
         signup.addTarget(self, action: #selector(signUpClicked), for: .touchUpInside)
         view.addSubview(signup)
         
         //LOGIN UIBUTTON
-        login = UIButton(frame: CGRect(x: 100, y: 100, width: view.frame.width - 100, height: 45))
-        login.center = CGPoint(x: view.frame.width/4, y:  view.frame.height/2 + 150)
+        login = UIButton(frame: CGRect(x: 100, y: 100, width: view.frame.width/4 - 20, height: 45))
+        login.center = CGPoint(x: view.frame.width/4 + 30, y:  view.frame.height/2 + 250)
         login.setTitle("login", for: .normal)
         login.layer.cornerRadius = 20
         login.titleLabel?.font = UIFont(name:"Raleway-SemiBold", size: 100.0)
         login.titleLabel?.font =  .systemFont(ofSize: 30)
-
         login.backgroundColor = airPinkColor
-        //login.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
+        login.addTarget(self, action: #selector(loginClicked(_:)), for: .touchUpInside)
         view.addSubview(login)
         
     }
     @objc func signUpClicked() {
         performSegue(withIdentifier: "toSignUp", sender: self)
         
-        //   if let mvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FeedViewController") as? ModalViewController {
-        //        self.present(mvc, animated: true, completion: nil)
-        //   }
-        
     }
+    @objc func loginClicked(_ sender: Any){
+        Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (user, error) in
+            if error != nil{
+                print(error!)
+            }else{
+                print("Login Succesful")
+                let idUser = user!.user.uid
+                let userRecieved = self.dbHelper.getUserWithId(id: idUser)
+                if userRecieved.isDonor == true{
+                    let storyboard = UIStoryboard(name: "Main", bundle: .main)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "TabBarVCDonor")
+                    self.view.window?.rootViewController = vc
+                    self.view.window?.makeKeyAndVisible()
+                }else{
+                    let storyboard = UIStoryboard(name: "Main", bundle: .main)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "TabBarVCReciever")
+                    self.view.window?.rootViewController = vc
+                    self.view.window?.makeKeyAndVisible()
+                }
+                
+            }
+        }
+    }
+    
 }
 

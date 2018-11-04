@@ -23,7 +23,8 @@
 		B0911FBC218E9D4700B9A4CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0911FBB218E9D4700B9A4CC /* User.swift */; };
 		B0911FBE218E9D5100B9A4CC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0911FBD218E9D5100B9A4CC /* Post.swift */; };
 		B0911FC1218EA82C00B9A4CC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0911FC0218EA82C00B9A4CC /* GoogleService-Info.plist */; };
-		B0911FC3218EA8D400B9A4CC /* FirebaseAuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0911FC2218EA8D400B9A4CC /* FirebaseAuthHelper.swift */; };
+		B0911FC8218EB85C00B9A4CC /* FirebaseDatabaseHelper .swift in Sources */ = {isa = PBXBuildFile; fileRef = B0911FC7218EB85C00B9A4CC /* FirebaseDatabaseHelper .swift */; };
+		B0911FCA218EE0AB00B9A4CC /* NewRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0911FC9218EE0AB00B9A4CC /* NewRequestVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +69,8 @@
 		B0911FBB218E9D4700B9A4CC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B0911FBD218E9D5100B9A4CC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B0911FC0218EA82C00B9A4CC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		B0911FC2218EA8D400B9A4CC /* FirebaseAuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthHelper.swift; sourceTree = "<group>"; };
+		B0911FC7218EB85C00B9A4CC /* FirebaseDatabaseHelper .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseDatabaseHelper .swift"; sourceTree = "<group>"; };
+		B0911FC9218EE0AB00B9A4CC /* NewRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRequestVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +143,7 @@
 			children = (
 				B0911FC0218EA82C00B9A4CC /* GoogleService-Info.plist */,
 				B0911F83218E5AB100B9A4CC /* AppDelegate.swift */,
-				B0911FC2218EA8D400B9A4CC /* FirebaseAuthHelper.swift */,
+				B0911FC7218EB85C00B9A4CC /* FirebaseDatabaseHelper .swift */,
 				B0911FC4218EB04B00B9A4CC /* Controllers */,
 				B0911FBF218E9D7600B9A4CC /* Models */,
 				B0911F87218E5AB100B9A4CC /* Main.storyboard */,
@@ -187,6 +189,7 @@
 				B0911FB3218E6B1C00B9A4CC /* RecieverFeedVC.swift */,
 				B0911FB9218E73A100B9A4CC /* SignUpRecieverVC.swift */,
 				B0911FB5218E734E00B9A4CC /* SignUpVC.swift */,
+				B0911FC9218EE0AB00B9A4CC /* NewRequestVC.swift */,
 				B0911FB7218E738A00B9A4CC /* SignUpDonatorVC.swift */,
 			);
 			name = Controllers;
@@ -335,9 +338,9 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
-				"${BUILT_PRODUCTS_DIR}/TKSubmitTransition/TKSubmitTransition.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -346,9 +349,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TKSubmitTransition.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -386,11 +389,12 @@
 				B0911FB2218E6B0300B9A4CC /* DonatorFeedVC.swift in Sources */,
 				B0911FB4218E6B1C00B9A4CC /* RecieverFeedVC.swift in Sources */,
 				B0911F86218E5AB100B9A4CC /* ViewController.swift in Sources */,
+				B0911FC8218EB85C00B9A4CC /* FirebaseDatabaseHelper .swift in Sources */,
 				B0911FBC218E9D4700B9A4CC /* User.swift in Sources */,
 				B0911FB6218E734E00B9A4CC /* SignUpVC.swift in Sources */,
+				B0911FCA218EE0AB00B9A4CC /* NewRequestVC.swift in Sources */,
 				B0911FBE218E9D5100B9A4CC /* Post.swift in Sources */,
 				B0911F84218E5AB100B9A4CC /* AppDelegate.swift in Sources */,
-				B0911FC3218EA8D400B9A4CC /* FirebaseAuthHelper.swift in Sources */,
 				B0911FBA218E73A100B9A4CC /* SignUpRecieverVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

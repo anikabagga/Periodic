@@ -8,6 +8,9 @@
 
 import UIKit
 import SkyFloatingLabelTextField
+import FirebaseDatabase
+import FirebaseCore
+import FirebaseAuth
 
 class SignUpDonatorVC: UITabBarController {
 
@@ -21,6 +24,10 @@ class SignUpDonatorVC: UITabBarController {
     var back: UIButton!
     var enter: UIButton!
     
+    let dbHelper = FirebaseDatabaseHelper()
+
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         become = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 200))
@@ -29,6 +36,14 @@ class SignUpDonatorVC: UITabBarController {
         become.textColor = .white
         become.adjustsFontSizeToFitWidth = true
         become.font = UIFont(name:"Arial", size: 70.0)
+        
+        let imageN = "WaveImage"
+        let imageWave = UIImage(named: imageN)
+        let imageWaveView = UIImageView(image: imageWave!)
+        imageWaveView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 600)
+        imageWaveView.center = CGPoint(x: view.frame.width/2, y:  view.frame.height/2 + 200)
+        imageWaveView.contentMode = .scaleAspectFit
+        view.addSubview(imageWaveView)
         
         //signUpLabel.font = UIFont(name:"Raleway-SemiBold", size: 20.0)
         become.text = "become"
@@ -126,18 +141,18 @@ class SignUpDonatorVC: UITabBarController {
         
         //SINGUP UIBUTTON
         let airPinkColor = UIColor(red: 255/255.0, green: 148/255.0, blue: 153/255.0, alpha: 1.0)
-        enter = UIButton(frame: CGRect(x: 100, y: 100, width: view.frame.width - 100, height: 45))
-        enter.center = CGPoint(x: view.frame.width/4 * 3, y:  view.frame.height/2 + 150)
+        enter = UIButton(frame: CGRect(x: 100, y: 100, width: view.frame.width/4, height: 35))
+        enter.center = CGPoint(x: view.frame.width/4 * 3 - 35, y:  view.frame.height/2 + 200)
         enter.setTitle("enter", for: UIControlState())
         enter.titleLabel?.font = UIFont(name:"Arial", size: 100.0)
         enter.titleLabel?.font =  .systemFont(ofSize: 30)
         enter.backgroundColor = airPinkColor
-        enter.addTarget(self, action: #selector(enterClicked), for: .touchUpInside)
+        enter.addTarget(self, action: #selector(loginButtonPressed(_:)), for: .touchUpInside)
         view.addSubview(enter)
         
         //LOGIN UIBUTTON
-        back = UIButton(frame: CGRect(x: 100, y: 100, width: view.frame.width - 100, height: 45))
-        back.center = CGPoint(x: view.frame.width/4, y:  view.frame.height/2 + 150)
+        back = UIButton(frame: CGRect(x: 100, y: 100, width: view.frame.width/4 - 20,  height: 35))
+        back.center = CGPoint(x: view.frame.width/4 + 30, y:  view.frame.height/2 + 200)
         back.setTitle("back", for: .normal)
         back.layer.cornerRadius = 20
         back.titleLabel?.font = UIFont(name:"Raleway-SemiBold", size: 100.0)
@@ -155,18 +170,31 @@ class SignUpDonatorVC: UITabBarController {
         //   }
         
     }
-    @objc func enterClicked() {
-        performSegue(withIdentifier: "toDonarFeed", sender: self)
-        
-        //   if let mvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FeedViewController") as? ModalViewController {
-        //        self.present(mvc, animated: true, completion: nil)
-        //   }
-        
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func loginButtonPressed(_ sender: Any){
+        //Auth.auth().currentUser?.uid
+        Auth.auth().createUser(withEmail: email.text!, password: password.text!){ (user, error) in
+            if error != nil{
+                print(error!)
+            } else if let user = user {
+                //user.user.uid
+                print("Registration Successful")
+                
+                let userSetUp = User(user.user.uid, self.firstName.text!, self.email.text!, self.phoneNumber.text!, true)
+                self.dbHelper.makeUser(user: userSetUp)
+            
+                let storyboard = UIStoryboard(name: "Main", bundle: .main)
+                let vc = storyboard.instantiateViewController(withIdentifier: "TabBarVCDonor")
+                self.view.window?.rootViewController = vc
+                self.view.window?.makeKeyAndVisible()
+                
+                
+            }
+        }
     }
     
 

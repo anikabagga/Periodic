@@ -4,15 +4,14 @@ target 'periodic.' do
   use_frameworks!
 
   pod 'SkyFloatingLabelTextField', '~> 3.0'
-  pod 'TKSubmitTransition', :git => 'https://github.com/entotsu/TKSubmitTransition.git', :branch => 'swift4'
-
+  pod 'M13Checkbox'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Performance'
   pod 'Firebase/RemoteConfig'
-  
+  pod 'Firebase/Storage'  
 end
 
 
