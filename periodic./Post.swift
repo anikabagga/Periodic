@@ -7,3 +7,18 @@
 //
 
 import Foundation
+import UIKit
+
+class Post{
+    
+    var username : String!
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}

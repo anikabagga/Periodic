@@ -1,0 +1,6 @@
+framework module Pods_periodic_ {
+  umbrella header "Pods-periodic.-umbrella.h"
+
+  export *
+  module * { export * }
+}

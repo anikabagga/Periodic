@@ -7,3 +7,20 @@
 //
 
 import Foundation
+import FirebaseAuth
+
+class FirebaseAuthHelper{
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
